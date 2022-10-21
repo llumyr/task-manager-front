@@ -14,6 +14,8 @@ onBeforeMount(async () => {
 </script>
 
 <style lang="scss">
+@import '@/assets/default';
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

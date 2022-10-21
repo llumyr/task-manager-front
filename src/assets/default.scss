@@ -1,0 +1,42 @@
+/* DEFAULT STYLES */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+ul[class],
+ol[class] {
+  list-style: none;
+}
+
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  border-style: none;
+  background-color: transparent;
+}
+
+button,
+select {
+  cursor: pointer;
+}
+
+select {
+  appearance: none;
+}
