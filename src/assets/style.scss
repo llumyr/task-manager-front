@@ -1,0 +1,22 @@
+@import '@/assets/default';
+@import '@/assets/schemeVariables';
+
+body {
+  color: var(--text);
+  background-color: var(--background);
+}
+
+button {
+  color: var(--text);
+}
+
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
