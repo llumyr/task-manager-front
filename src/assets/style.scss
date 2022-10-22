@@ -15,12 +15,14 @@ a {
 }
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
 }
 
 .container {
   max-width: 1440px;
   margin: 0 auto;
+  padding: 0 10px;
 }

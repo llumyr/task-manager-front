@@ -6,6 +6,11 @@ const routes: Array<RouteRecordRaw> = [
     path: Routes.home,
     name: 'home',
     component: () => import('@/pages/HomePage.vue')
+  },
+  {
+    path: Routes.regAuth,
+    name: 'regAuth',
+    component: () => import('@/pages/RegAuthPage.vue')
   }
 ]
 

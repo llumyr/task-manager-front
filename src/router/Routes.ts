@@ -1,5 +1,5 @@
 export default {
   home: '/',
-  signUp: '/sign-up',
+  regAuth: '/reg-auth',
   tasks: '/tasks'
 }
