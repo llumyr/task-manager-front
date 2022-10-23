@@ -8,8 +8,9 @@
           <p>If you don`t have an account</p>
         </div>
         <div class="reg-auth__form animate__animated" v-show="regShow" ref="regFormElement">
-          <input type="text" placeholder="username">
-          <input type="password" placeholder="password">
+          <input type="text" placeholder="username" v-model="username">
+          <input type="password" placeholder="password" v-model="password">
+          <button type="submit" @click="clickSignUp">Sign Up</button>
         </div>
       </div>
       <div class="reg-auth__item">
@@ -19,8 +20,9 @@
           <p>If you already have an account</p>
         </div>
         <div class="reg-auth__form animate__animated" v-show="authShow" ref="authFormElement">
-          <input type="text" placeholder="username">
-          <input type="password" placeholder="password">
+          <input type="text" placeholder="username" v-model="username">
+          <input type="password" placeholder="password" v-model="password">
+          <button type="submit" @click="clickSignIn">Sign In</button>
         </div>
       </div>
     </div>
@@ -30,15 +32,25 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import 'animate.css'
+import { signUp, signIn } from '@/services/auth.service'
+import { useRouter } from 'vue-router'
 
 const toggleClass = (element: HTMLElement, className: string): void => {
-  if (element.classList.contains(className)) element.classList.remove(className)
-  else element.classList.add(className)
+  if (element.classList.contains(className)) {
+    element.classList.remove(className)
+  } else {
+    element.classList.add(className)
+  }
 }
 
 const regShow = ref(false)
 const regTextElement = ref(null)
 const regFormElement = ref(null)
+
+const username = ref('')
+const password = ref('')
+
+const router = useRouter()
 
 const regToggleForm = () => {
   if (authShow.value) authToggleForm()
@@ -91,6 +103,27 @@ const authToggleForm = () => {
     setTimeout(() => {
       toggleClass(authFormElement.value, 'animate__bounceIn')
     }, 1500)
+  }
+}
+
+const clickSignUp = async () => {
+  try {
+    const res = await signUp(username.value, password.value)
+    console.log(res)
+    localStorage.token = res.data.token
+    await router.push('/tasks')
+  } catch (e) {
+    console.log(e)
+  }
+}
+
+const clickSignIn = async () => {
+  try {
+    const res = await signIn(username.value, password.value)
+    await router.push('/tasks')
+    console.log(res)
+  } catch (e) {
+    console.log(e)
   }
 }
 </script>
