@@ -34,77 +34,12 @@ import { ref } from 'vue'
 import 'animate.css'
 import { signUp, signIn } from '@/services/auth.service'
 import { useRouter } from 'vue-router'
-
-const toggleClass = (element: HTMLElement, className: string): void => {
-  if (element.classList.contains(className)) {
-    element.classList.remove(className)
-  } else {
-    element.classList.add(className)
-  }
-}
-
-const regShow = ref(false)
-const regTextElement = ref(null)
-const regFormElement = ref(null)
-
-const username = ref('')
-const password = ref('')
+import toggleForm from '@/utils/toggleForm'
 
 const router = useRouter()
 
-const regToggleForm = () => {
-  if (authShow.value) authToggleForm()
-  if (regShow.value) {
-    toggleClass(regFormElement.value, 'animate__bounceOut')
-    setTimeout(() => {
-      regShow.value = !regShow.value
-      toggleClass(regFormElement.value, 'animate__bounceOut')
-      toggleClass(regTextElement.value, 'animate__bounceIn')
-    }, 750)
-    setTimeout(() => {
-      toggleClass(regTextElement.value, 'animate__bounceIn')
-    }, 1500)
-  } else {
-    toggleClass(regTextElement.value, 'animate__bounceOut')
-    setTimeout(() => {
-      regShow.value = !regShow.value
-      toggleClass(regTextElement.value, 'animate__bounceOut')
-      toggleClass(regFormElement.value, 'animate__bounceIn')
-    }, 750)
-    setTimeout(() => {
-      toggleClass(regFormElement.value, 'animate__bounceIn')
-    }, 1500)
-  }
-}
-
-const authShow = ref(false)
-const authTextElement = ref(null)
-const authFormElement = ref(null)
-
-const authToggleForm = () => {
-  if (regShow.value) regToggleForm()
-  if (authShow.value) {
-    toggleClass(authFormElement.value, 'animate__bounceOut')
-    setTimeout(() => {
-      authShow.value = !authShow.value
-      toggleClass(authFormElement.value, 'animate__bounceOut')
-      toggleClass(authTextElement.value, 'animate__bounceIn')
-    }, 750)
-    setTimeout(() => {
-      toggleClass(authTextElement.value, 'animate__bounceIn')
-    }, 1500)
-  } else {
-    toggleClass(authTextElement.value, 'animate__bounceOut')
-    setTimeout(() => {
-      authShow.value = !authShow.value
-      toggleClass(authTextElement.value, 'animate__bounceOut')
-      toggleClass(authFormElement.value, 'animate__bounceIn')
-    }, 750)
-    setTimeout(() => {
-      toggleClass(authFormElement.value, 'animate__bounceIn')
-    }, 1500)
-  }
-}
+const username = ref('')
+const password = ref('')
 
 const clickSignUp = async () => {
   try {
@@ -125,6 +60,24 @@ const clickSignIn = async () => {
   } catch (e) {
     console.log(e)
   }
+}
+
+const regShow = ref(false)
+const regTextElement = ref(null)
+const regFormElement = ref(null)
+
+const regToggleForm = () => {
+  if (authShow.value) authToggleForm()
+  toggleForm(regShow, regTextElement.value, regFormElement.value)
+}
+
+const authShow = ref(false)
+const authTextElement = ref(null)
+const authFormElement = ref(null)
+
+const authToggleForm = () => {
+  if (regShow.value) regToggleForm()
+  toggleForm(authShow, authTextElement.value, authFormElement.value)
 }
 </script>
 
