@@ -11,6 +11,11 @@ const routes: Array<RouteRecordRaw> = [
     path: Routes.regAuth,
     name: 'regAuth',
     component: () => import('@/pages/RegAuthPage.vue')
+  },
+  {
+    path: Routes.tasks,
+    name: 'tasks',
+    component: () => import('@/pages/TasksPage.vue')
   }
 ]
 
