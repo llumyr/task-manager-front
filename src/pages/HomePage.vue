@@ -1,5 +1,5 @@
 <template>
-  <div class="home animate__animated" ref="homeElement">
+  <div class="home animate__animated">
     <h1 class="home__title">This is Task Manager</h1>
     <p class="home__description">Here you can create tasks and manage them</p>
     <button class="home__sign-up-link button" @click="routeToRegAuth">Start Now</button>
@@ -7,17 +7,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import Routes from '@/router/Routes'
 import 'animate.css'
 
 const router = useRouter()
 
-const homeElement = ref(null)
-
 const routeToRegAuth = () => {
-  homeElement.value.classList.add('animate__backOutUp')
+  document.querySelector('.home').classList.add('animate__backOutUp')
   setTimeout(() => {
     router.push({ path: Routes.regAuth })
   }, 1000)
