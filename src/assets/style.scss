@@ -1,17 +1,18 @@
 @import '@/assets/default';
-@import '@/assets/schemeVariables';
+@import '@/assets/schemeVariables.css';
 
 body {
   color: var(--text);
   background-color: var(--background);
 }
 
-button, a {
-  color: var(--text);
+a {
+  color: var(--accent);
+  text-decoration: none;
 }
 
-a {
-  text-decoration: none;
+button, a.black {
+  color: var(--text);
 }
 
 #app {
@@ -25,4 +26,45 @@ a {
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 10px;
+}
+
+.button {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+  border-radius: 10px;
+  background: var(--accent);
+  box-shadow: 0 10px 20px rgba(var(--accent), 0.2);
+}
+
+.label {
+  margin-left: 10px;
+  margin-bottom: 5px;
+  font-weight: 400;
+  font-size: 15px;
+  color: var(--text);
+  opacity: 0.75;
+  display: block;
+  width: fit-content;
+}
+
+.input {
+  background: var(--input-background);
+  border: var(--input-border);
+  border-radius: 10px;
+  padding: 11px 14px;
+  width: 100%;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+  outline: none;
+
+  &:focus {
+    border-color: var(--accent);
+  }
 }

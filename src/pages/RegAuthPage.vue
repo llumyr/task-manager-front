@@ -2,27 +2,39 @@
   <div class="reg-auth">
     <div class="reg-auth__wrapper">
       <div class="reg-auth__item">
-        <div class="content animate__animated" style="text-align: center; cursor: pointer" @click="regToggleForm"
-             v-show="!regShow" ref="regTextElement">
+        <div class="content animate__animated" @click="regToggleForm" v-show="!regShow" ref="regTextElement">
           <h1>Registration</h1>
           <p>If you don`t have an account</p>
         </div>
         <div class="reg-auth__form animate__animated" v-show="regShow" ref="regFormElement">
-          <input type="text" placeholder="username" v-model="username">
-          <input type="password" placeholder="password" v-model="password">
-          <button type="submit" @click="clickSignUp">Sign Up</button>
+          <h1>Registration</h1>
+          <div>
+            <label for="" class="label">Username</label>
+            <input type="text" class="input" placeholder="input username" v-model="username">
+          </div>
+          <div>
+            <label for="" class="label">Password</label>
+            <input type="password" class="input" placeholder="input password" v-model="password">
+          </div>
+          <button type="submit" class="button" @click="auth('signUp')">Sign Up</button>
         </div>
       </div>
       <div class="reg-auth__item">
-        <div class="content animate__animated" style="text-align: center; cursor: pointer" @click="authToggleForm"
-             v-show="!authShow" ref="authTextElement">
+        <div class="content animate__animated" @click="authToggleForm" v-show="!authShow" ref="authTextElement">
           <h1>Authorization</h1>
           <p>If you already have an account</p>
         </div>
         <div class="reg-auth__form animate__animated" v-show="authShow" ref="authFormElement">
-          <input type="text" placeholder="username" v-model="username">
-          <input type="password" placeholder="password" v-model="password">
-          <button type="submit" @click="clickSignIn">Sign In</button>
+          <h1>Authorization</h1>
+          <div>
+            <label for="" class="label">Username</label>
+            <input type="text" class="input" placeholder="username" v-model="username">
+          </div>
+          <div>
+            <label for="" class="label">Password</label>
+            <input type="password" class="input" placeholder="password" v-model="password">
+          </div>
+          <button type="submit" class="button" @click="auth('signIn')">Sign In</button>
         </div>
       </div>
     </div>
@@ -31,38 +43,16 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import 'animate.css'
-import { signUp, signIn } from '@/services/auth.service'
-import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 import toggleForm from '@/utils/toggleForm'
-import Routes from '@/router/Routes'
+import 'animate.css'
 
-const router = useRouter()
+const store = useStore()
 
 const username = ref('')
 const password = ref('')
 
-const clickSignUp = async () => {
-  try {
-    const res = await signUp(username.value, password.value)
-    console.log(res)
-    localStorage.token = res.data.token
-    await router.push(Routes.tasks)
-  } catch (e) {
-    console.log(e)
-  }
-}
-
-const clickSignIn = async () => {
-  try {
-    const res = await signIn(username.value, password.value)
-    console.log(res)
-    localStorage.token = res.data.token
-    await router.push(Routes.tasks)
-  } catch (e) {
-    console.log(e)
-  }
-}
+const auth = async (method: string) => await store.dispatch(method, { username: username.value, password: password.value })
 
 const regShow = ref(false)
 const regTextElement = ref(null)
@@ -104,7 +94,7 @@ const authToggleForm = () => {
     justify-content: center;
 
     &:first-child {
-      border-right: 1px solid grey;
+      border-right: 1px solid var(--splitter);
     }
 
     .content {
@@ -119,8 +109,11 @@ const authToggleForm = () => {
   }
 
   &__form {
+    width: 50%;
     display: flex;
     flex-direction: column;
+    text-align: center;
+    gap: 25px;
   }
 }
 </style>

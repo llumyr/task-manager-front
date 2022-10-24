@@ -1,5 +1,5 @@
 import { createStore } from 'vuex'
-import { tokenRefresh } from '@/services/auth.service'
+import { signIn, signUp, tokenRefresh } from '@/services/auth.service'
 import router from '@/router'
 import Routes from '@/router/Routes'
 import Groups from '@/store/modules/Groups'
@@ -21,11 +21,36 @@ export default createStore({
       if (localStorage.token) {
         try {
           const res = await tokenRefresh()
-          console.log(res)
-          context.commit('setIsAuth', true)
+          if (res.status === 200) {
+            localStorage.token = res.data.token
+            context.commit('setIsAuth', true)
+          }
         } catch (e) {
+          console.log(e)
           await router.push(Routes.home)
         }
+      }
+    },
+    async signUp (context, { username, password }: { username: string, password: string }) {
+      try {
+        const res = await signUp(username, password)
+        if (res.status === 201) {
+          localStorage.token = res.data.token
+          await router.push(Routes.tasks)
+        }
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    async signIn (context, { username, password }: { username: string, password: string }) {
+      try {
+        const res = await signIn(username, password)
+        if (res.status === 200) {
+          localStorage.token = res.data.token
+          await router.push(Routes.tasks)
+        }
+      } catch (e) {
+        console.log(e)
       }
     }
   },

@@ -2,7 +2,7 @@
   <div class="home">
     <h1 class="home__title">This is Task Manager</h1>
     <p class="home__description">Here you can create tasks and manage them</p>
-    <router-link :to="Routes.regAuth" class="home__sign-up-link">Start Now</router-link>
+    <router-link :to="Routes.regAuth" class="home__sign-up-link button">Start Now</router-link>
   </div>
 </template>
 
@@ -30,10 +30,6 @@ import Routes from '@/router/Routes'
   &__sign-up-link {
     margin-top: 25px;
     font-weight: 600;
-    background-color: #4f8bff;
-    padding: 15px;
-    border-radius: 12px;
-    color: white;
   }
 }
 </style>

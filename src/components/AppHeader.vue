@@ -2,7 +2,7 @@
   <header class="header">
     <div class="container">
       <div class="header__wrapper">
-        <router-link :to="Routes.home" class="header__logo">Task Manager</router-link>
+        <router-link :to="Routes.home" class="header__logo black">Task Manager</router-link>
         <button type="button" class="header__color-scheme-switcher" @click="toggleColorScheme">button</button>
       </div>
     </div>
@@ -28,7 +28,7 @@ const toggleColorScheme = (): void => {
 .header {
   position: fixed;
   width: 100%;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid var(--splitter);
   padding: 10px 0;
 
   &__wrapper {

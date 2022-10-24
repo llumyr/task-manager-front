@@ -13,7 +13,8 @@ import AppHeader from '@/components/AppHeader.vue'
 const store = useStore()
 
 onBeforeMount(async () => {
-  document.documentElement.dataset.colorScheme = 'light'
+  const colorScheme = localStorage.colorScheme === 'dark' ? 'dark' : 'light'
+  document.documentElement.dataset.colorScheme = colorScheme
   await store.dispatch('initAuth')
 })
 </script>
