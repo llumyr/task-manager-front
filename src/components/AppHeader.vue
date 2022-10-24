@@ -30,6 +30,7 @@ const toggleColorScheme = (): void => {
   width: 100%;
   border-bottom: 1px solid var(--splitter);
   padding: 10px 0;
+  z-index: 1000;
 
   &__wrapper {
     display: flex;

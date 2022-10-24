@@ -1,5 +1,5 @@
 <template>
-  <div class="reg-auth">
+  <div class="reg-auth animate__animated animate__backInDown">
     <div class="reg-auth__wrapper">
       <div class="reg-auth__item">
         <div class="content animate__animated" @click="regToggleForm" v-show="!regShow" ref="regTextElement">
