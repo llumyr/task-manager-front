@@ -35,6 +35,7 @@ import 'animate.css'
 import { signUp, signIn } from '@/services/auth.service'
 import { useRouter } from 'vue-router'
 import toggleForm from '@/utils/toggleForm'
+import Routes from '@/router/Routes'
 
 const router = useRouter()
 
@@ -46,7 +47,7 @@ const clickSignUp = async () => {
     const res = await signUp(username.value, password.value)
     console.log(res)
     localStorage.token = res.data.token
-    await router.push('/tasks')
+    await router.push(Routes.tasks)
   } catch (e) {
     console.log(e)
   }
@@ -55,8 +56,9 @@ const clickSignUp = async () => {
 const clickSignIn = async () => {
   try {
     const res = await signIn(username.value, password.value)
-    await router.push('/tasks')
     console.log(res)
+    localStorage.token = res.data.token
+    await router.push(Routes.tasks)
   } catch (e) {
     console.log(e)
   }

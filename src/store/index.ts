@@ -2,6 +2,7 @@ import { createStore } from 'vuex'
 import { tokenRefresh } from '@/services/auth.service'
 import router from '@/router'
 import Routes from '@/router/Routes'
+import Groups from '@/store/modules/Groups'
 
 export default createStore({
   state: {
@@ -29,5 +30,6 @@ export default createStore({
     }
   },
   modules: {
+    Groups
   }
 })

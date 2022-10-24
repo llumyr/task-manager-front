@@ -18,8 +18,4 @@ const tokenRefresh = async () => {
   return await api.put('/user/token/refresh')
 }
 
-const getTasks = async () => {
-  return await api.get('/user/tasks')
-}
-
-export { signUp, signIn, tokenRefresh, getTasks }
+export { signUp, signIn, tokenRefresh }
