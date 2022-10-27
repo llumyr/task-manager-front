@@ -1,7 +1,10 @@
 <template>
   <div class="content">
     <div class="groups">
-      {{ groups }}
+      <div class="groups__content">
+        <h5 class="groups__title">Groups</h5>
+        <button class="groups__add">+</button>
+      </div>
     </div>
     <div class="tasks">tasks</div>
   </div>
@@ -25,5 +28,16 @@ onBeforeMount(async () => {
   padding-top: 52px;
   display: grid;
   grid-template-columns: 25% 1fr;
+}
+
+.groups {
+  padding: 15px;
+
+  &__content {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    border-right: 1px solid gray;
+  }
 }
 </style>
