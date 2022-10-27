@@ -1,5 +1,10 @@
 <template>
-  {{ groups }}
+  <div class="content">
+    <div class="groups">
+      {{ groups }}
+    </div>
+    <div class="tasks">tasks</div>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -16,4 +21,9 @@ onBeforeMount(async () => {
 </script>
 
 <style scoped lang="scss">
+.content {
+  padding-top: 52px;
+  display: grid;
+  grid-template-columns: 25% 1fr;
+}
 </style>

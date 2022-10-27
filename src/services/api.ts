@@ -6,7 +6,7 @@ const api = axios.create({
 
 api.interceptors.request.use(
   (config: any) => {
-    if (localStorage.token) config.headers.bearer = localStorage.token
+    if (localStorage.token) config.headers.authorization = `Bearer ${localStorage.token}`
     return config
   }
 )
