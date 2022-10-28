@@ -2,7 +2,7 @@
 @import '@/assets/schemeVariables.css';
 
 body {
-  color: var(--text);
+  color: var(--main);
   background-color: var(--background);
 }
 
@@ -12,7 +12,7 @@ a {
 }
 
 button, a.black {
-  color: var(--text);
+  color: var(--main);
 }
 
 #app {
@@ -47,7 +47,7 @@ button, a.black {
   margin-bottom: 5px;
   font-weight: 400;
   font-size: 15px;
-  color: var(--text);
+  color: var(--main);
   opacity: 0.75;
   display: block;
   width: fit-content;

@@ -1,6 +1,6 @@
 <template>
   <app-header/>
-  <div class="container">
+  <div class="container" style="padding-top: 52px">
     <router-view/>
   </div>
 </template>
@@ -13,8 +13,7 @@ import AppHeader from '@/components/AppHeader.vue'
 const store = useStore()
 
 onBeforeMount(async () => {
-  const colorScheme = localStorage.colorScheme === 'dark' ? 'dark' : 'light'
-  document.documentElement.dataset.colorScheme = colorScheme
+  document.documentElement.dataset.colorScheme = localStorage.colorScheme === 'dark' ? 'dark' : 'light'
   await store.dispatch('initAuth')
 })
 </script>

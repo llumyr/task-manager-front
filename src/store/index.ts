@@ -24,6 +24,7 @@ export default createStore({
           if (res.status === 200) {
             localStorage.token = res.data.token
             context.commit('setIsAuth', true)
+            await router.push(Routes.tasks)
           }
         } catch (e) {
           console.log(e)

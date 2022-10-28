@@ -80,14 +80,13 @@ const authToggleForm = () => {
   align-items: center;
 
   &__wrapper {
-    min-height: 60vh;
+    min-height: 50vh;
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
 
   &__item {
-    padding: 25px;
     display: flex;
     flex-direction: column;
     align-items: center;

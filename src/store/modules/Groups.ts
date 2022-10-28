@@ -16,14 +16,11 @@ export default {
   },
   actions: {
     async getGroups (context: any) {
-      if (localStorage.token) {
-        try {
-          const res = await getGroups()
-          console.log(res)
-          context.commit('setGroups', res.data)
-        } catch (e) {
-          await router.push(Routes.home)
-        }
+      try {
+        const res = await getGroups()
+        context.commit('setGroups', res.data)
+      } catch (e) {
+        await router.push(Routes.home)
       }
     }
   },
