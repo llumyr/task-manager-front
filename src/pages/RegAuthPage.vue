@@ -55,8 +55,8 @@ const password = ref('')
 const auth = async (method: string) => await store.dispatch(method, { username: username.value, password: password.value })
 
 const regShow = ref(false)
-const regTextElement = ref(null)
-const regFormElement = ref(null)
+const regTextElement = ref()
+const regFormElement = ref()
 
 const regToggleForm = () => {
   if (authShow.value) authToggleForm()
@@ -64,8 +64,8 @@ const regToggleForm = () => {
 }
 
 const authShow = ref(false)
-const authTextElement = ref(null)
-const authFormElement = ref(null)
+const authTextElement = ref()
+const authFormElement = ref()
 
 const authToggleForm = () => {
   if (regShow.value) regToggleForm()
@@ -75,7 +75,7 @@ const authToggleForm = () => {
 
 <style scoped lang="scss">
 .reg-auth {
-  min-height: 100vh;
+  height: 100%;
   display: flex;
   align-items: center;
 

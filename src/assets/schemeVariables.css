@@ -3,16 +3,17 @@ html[data-color-scheme='light'] {
   --second: rgba(44, 62, 80, 0.5);
   --background: #f1f3f4;
   --accent: #4f8bff;
+  --red: #ff7777;
   --input-background: #fafafa;
   --input-border: 1px solid #ccc;
   --splitter: #ccc;
-;
 }
 
 html[data-color-scheme='dark'] {
   --main: #f1f3f4;
   --background: #2c3e50;
   --accent: #4f8bff;
+  --red: #ff7777;
   --input-background: #425977;
   --input-border: 1px solid var(--input-background);
   --splitter: #ebecee;

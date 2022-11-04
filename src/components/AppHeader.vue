@@ -3,7 +3,10 @@
     <div class="container">
       <div class="header__wrapper">
         <router-link :to="Routes.home" class="header__logo black">Task Manager</router-link>
-        <button type="button" class="header__color-scheme-switcher" @click="toggleColorScheme">button</button>
+        <div class="header__buttons" v-if="isAuth">
+          <button class="button outline red" @click="logout">logout</button>
+        </div>
+<!--        <button type="button" class="header__color-scheme-switcher" @click="toggleColorScheme">button</button>-->
       </div>
     </div>
   </header>
@@ -22,12 +25,12 @@ const toggleColorScheme = (): void => {
   document.documentElement.dataset.colorScheme = document.documentElement.dataset.colorScheme === 'light' ? 'dark' : 'light'
   localStorage.colorScheme = document.documentElement.dataset.colorScheme
 }
+
+const logout = async () => await store.dispatch('logout')
 </script>
 
 <style scoped lang="scss">
 .header {
-  position: fixed;
-  width: 100%;
   border-bottom: 1px solid var(--splitter);
   padding: 10px 0;
   z-index: 1000;

@@ -20,6 +20,8 @@ button, a.black {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
 
 .container {
@@ -40,6 +42,17 @@ button, a.black {
   border-radius: 10px;
   background: var(--accent);
   box-shadow: 0 10px 20px rgba(var(--accent), 0.2);
+
+  &.outline {
+    background-color: transparent;
+    font-weight: 600;
+    outline: 2px solid;
+    color: var(--accent);
+
+    &.red {
+      color: var(--red);
+    }
+  }
 }
 
 .label {

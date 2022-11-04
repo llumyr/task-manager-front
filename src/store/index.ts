@@ -48,11 +48,17 @@ export default createStore({
         const res = await signIn(username, password)
         if (res.status === 200) {
           localStorage.token = res.data.token
+          context.commit('setIsAuth', true)
           await router.push(Routes.tasks)
         }
       } catch (e) {
         console.log(e)
       }
+    },
+    async logout ({ commit }) {
+      commit('setIsAuth', false)
+      localStorage.removeItem('token')
+      await router.push(Routes.home)
     }
   },
   modules: {

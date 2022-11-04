@@ -1,8 +1,10 @@
 <template>
   <app-header/>
-  <div class="container" style="padding-top: 52px">
-    <router-view/>
-  </div>
+  <main>
+    <div class="container" style="height: 100%">
+      <router-view/>
+    </div>
+  </main>
 </template>
 
 <script setup lang="ts">
