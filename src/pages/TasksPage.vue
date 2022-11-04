@@ -7,7 +7,12 @@
           <button class="groups__add" @click="toggleAddingForm" ref="addingGroupButton"></button>
         </div>
         <div class="groups__adding-form" ref="addingFormElement">
-          <input type="text" placeholder="New group`s title">
+          <input type="text" placeholder="New group`s title" v-model="newGroupTitle">
+          <button class="groups__adding-form-confirm" @click="addGroup" :disabled="confirmAddGroupDisabled">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" fill="none">
+              <path stroke="#77ff77" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M18.5 2 7.1 14 2 8.6"/>
+            </svg>
+          </button>
         </div>
         <div class="groups__content" ref="groupsContentElement">
           <span class="groups__mark" ref="markElement"></span>
@@ -34,57 +39,7 @@ import toggleClass from '@/utils/toggleClass'
 
 const store = useStore()
 
-// const groups = computed(() => store.getters.groups)
-const groups = ref([
-  {
-    _id: '1',
-    title: 'Group 1'
-  },
-  {
-    _id: '2',
-    title: 'Group 2'
-  },
-  {
-    _id: '3',
-    title: 'Group 3'
-  },
-  {
-    _id: '4',
-    title: 'Group 4'
-  },
-  {
-    _id: '5',
-    title: 'Group 5'
-  },
-  {
-    _id: '6',
-    title: 'Group 6'
-  },
-  {
-    _id: '7',
-    title: 'Group 7'
-  },
-  {
-    _id: '8',
-    title: 'Group 8'
-  },
-  {
-    _id: '9',
-    title: 'Group 9'
-  },
-  {
-    _id: '10',
-    title: 'Group 10'
-  },
-  {
-    _id: '11',
-    title: 'Group 11'
-  },
-  {
-    _id: '12',
-    title: 'Group 12'
-  }
-])
+const groups = computed(() => store.getters.groups)
 
 const chosenGroup = ref({ _id: 'loading...', title: 'loading...' })
 
@@ -107,6 +62,16 @@ const toggleAddingForm = () => {
   toggleClass(groupsContentElement.value, 'adding-form-active')
   toggleClass(addingGroupButton.value, 'adding-form-active')
   toggleClass(addingFormElement.value, 'adding-form-active')
+}
+
+const newGroupTitle = ref('')
+
+const confirmAddGroupDisabled = computed(() => newGroupTitle.value.length === 0)
+
+const addGroup = async () => {
+  await store.dispatch('createGroup', newGroupTitle.value)
+  newGroupTitle.value = ''
+  toggleAddingForm()
 }
 
 onBeforeMount(async () => {
@@ -191,6 +156,18 @@ onBeforeMount(async () => {
       width: 100%;
       padding: 10px;
       outline: none;
+    }
+
+    &-confirm {
+      position: absolute;
+      right: 6px;
+      top: 50%;
+      transform: translateY(-50%);
+
+      &[disabled] {
+        cursor: default;
+        filter: grayscale(1);
+      }
     }
   }
 
