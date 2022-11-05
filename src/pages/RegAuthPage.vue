@@ -52,7 +52,7 @@ const store = useStore()
 const username = ref('')
 const password = ref('')
 
-const auth = async (method: string) => await store.dispatch(method, { username: username.value, password: password.value })
+const auth = async (method: string): Promise<void> => await store.dispatch(method, { username: username.value, password: password.value })
 
 const regShow = ref(false)
 const regTextElement = ref()
