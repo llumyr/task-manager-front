@@ -16,7 +16,7 @@
             <label for="" class="label">Password</label>
             <input type="password" class="input" placeholder="input password" v-model="password">
           </div>
-          <button type="submit" class="button" @click="auth('signUp')">Sign Up</button>
+          <button type="submit" class="button" @click="auth('auth/signUp')">Sign Up</button>
         </div>
       </div>
       <div class="reg-auth__item">
@@ -34,7 +34,7 @@
             <label for="" class="label">Password</label>
             <input type="password" class="input" placeholder="password" v-model="password">
           </div>
-          <button type="submit" class="button" @click="auth('signIn')">Sign In</button>
+          <button type="submit" class="button" @click="auth('auth/signIn')">Sign In</button>
         </div>
       </div>
     </div>

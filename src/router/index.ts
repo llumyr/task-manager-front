@@ -29,9 +29,9 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
-  if (to.meta?.requiredAuth && !store.getters.isAuth) {
+  if (to.meta?.requiredAuth && !store.getters['auth/isAuth']) {
     next({ path: Routes.home })
-  } else if (to.meta?.disabledToAuth && store.getters.isAuth) {
+  } else if (to.meta?.disabledToAuth && store.getters['auth/isAuth']) {
     next({ path: Routes.tasks })
   } else next()
 })

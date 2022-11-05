@@ -1,22 +1,43 @@
+import { ActionContext } from 'vuex'
+import { State } from '@/store'
 import { getGroups } from '@/services/user.service'
 import router from '@/router'
 import Routes from '@/router/Routes'
 import { createGroup } from '@/services/group.service'
 
+export interface IGroup {
+  _id: string
+  title: string
+  tasks?: any[]
+}
+
+export interface GroupsState {
+  groups: IGroup[]
+  activeGroup: IGroup
+}
+
+type GroupsContext = ActionContext<GroupsState, State>
+
 export default {
+  namespaced: true,
   state: {
-    groups: []
+    groups: [],
+    activeGroup: {}
   },
   getters: {
-    groups: (state: any) => state.groups
+    groups: (state: GroupsState) => state.groups,
+    activeGroup: (state: GroupsState) => state.activeGroup
   },
   mutations: {
-    setGroups (state: any, payload: boolean) {
+    setGroups (state: GroupsState, payload: any) {
       state.groups = payload
+    },
+    setActiveGroup (state: GroupsState, payload: any) {
+      state.activeGroup = payload
     }
   },
   actions: {
-    async getGroups (context: any) {
+    async getGroups (context: GroupsContext) {
       try {
         const res = await getGroups()
         context.commit('setGroups', res.data)
@@ -24,7 +45,7 @@ export default {
         await router.push(Routes.home)
       }
     },
-    async createGroup (context: any, title: string) {
+    async createGroup (context: GroupsContext, title: string) {
       try {
         const res = await createGroup(title)
         if (res.status === 201) await context.dispatch('getGroups')

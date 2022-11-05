@@ -54,7 +54,7 @@ import toggleClass from '@/utils/toggleClass'
 
 const store = useStore()
 
-const groups = computed(() => store.getters.groups)
+const groups = computed(() => store.getters['groups/groups'])
 
 const chosenGroup = ref({ _id: 'loading...', title: 'loading...' })
 
@@ -84,13 +84,13 @@ const newGroupTitle = ref('')
 const confirmAddGroupDisabled = computed(() => newGroupTitle.value.length === 0)
 
 const addGroup = async () => {
-  await store.dispatch('createGroup', newGroupTitle.value)
+  await store.dispatch('groups/createGroup', newGroupTitle.value)
   newGroupTitle.value = ''
   toggleAddingForm()
 }
 
 onBeforeMount(async () => {
-  await store.dispatch('getGroups')
+  await store.dispatch('groups/getGroups')
   chosenGroup.value = groups.value[0]
 })
 </script>

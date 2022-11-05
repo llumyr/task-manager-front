@@ -19,14 +19,14 @@ import { useStore } from 'vuex'
 
 const store = useStore()
 
-const isAuth = computed(() => store.getters.isAuth)
+const isAuth = computed(() => store.getters['auth/isAuth'])
 
 const toggleColorScheme = (): void => {
   document.documentElement.dataset.colorScheme = document.documentElement.dataset.colorScheme === 'light' ? 'dark' : 'light'
   localStorage.colorScheme = document.documentElement.dataset.colorScheme
 }
 
-const logout = async () => await store.dispatch('logout')
+const logout = async () => await store.dispatch('auth/logout')
 </script>
 
 <style scoped lang="scss">
