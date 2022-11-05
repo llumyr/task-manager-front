@@ -29,15 +29,15 @@ export default {
     activeGroup: (state: GroupsState) => state.activeGroup
   },
   mutations: {
-    setGroups (state: GroupsState, payload: any) {
+    setGroups (state: GroupsState, payload: IGroup[]) {
       state.groups = payload
     },
-    setActiveGroup (state: GroupsState, payload: any) {
+    setActiveGroup (state: GroupsState, payload: IGroup) {
       state.activeGroup = payload
     }
   },
   actions: {
-    async getGroups (context: GroupsContext) {
+    async getGroups (context: GroupsContext): Promise<void> {
       try {
         const res = await getGroups()
         context.commit('setGroups', res.data)
@@ -45,7 +45,7 @@ export default {
         await router.push(Routes.home)
       }
     },
-    async createGroup (context: GroupsContext, title: string) {
+    async createGroup (context: GroupsContext, title: string): Promise<void> {
       try {
         const res = await createGroup(title)
         if (res.status === 201) await context.dispatch('getGroups')
