@@ -13,7 +13,7 @@ export interface IGroup {
 
 export interface GroupsState {
   groups: IGroup[]
-  activeGroup: IGroup
+  activeGroup?: IGroup
 }
 
 type GroupsContext = ActionContext<GroupsState, State>
@@ -39,23 +39,22 @@ export default {
         }
       }
     },
-    setActiveGroup: (state: GroupsState, payload: IGroup) => (state.activeGroup = payload)
+    setActiveGroup: (state: GroupsState, payload: IGroup | undefined) => (state.activeGroup = payload)
   },
   actions: {
-    async getGroup ({ getters, commit }: GroupsContext): Promise<void> {
+    async getGroup ({ commit }: GroupsContext, _id: string): Promise<void> {
       try {
-        const res = await getGroup(getters.activeGroup._id)
-        console.log(res)
+        const res = await getGroup(_id)
         if (res.status === 200) commit('setActiveGroup', res.data)
       } catch (e) {
         console.log(e)
       }
     },
-    async getGroups ({ commit }: GroupsContext): Promise<void> {
+    async getGroups ({ commit, dispatch }: GroupsContext): Promise<void> {
       try {
         const res = await getGroups()
         commit('setGroups', res.data)
-        if (res.data.length !== 0) commit('setActiveGroup', res.data[0])
+        if (res.data.length !== 0) await dispatch('getGroup', res.data[0]._id)
       } catch (e) {
         await router.push(Routes.home)
       }
@@ -71,7 +70,10 @@ export default {
     async deleteGroup ({ commit }: GroupsContext, _id: string): Promise<void> {
       try {
         const res = await deleteGroup(_id)
-        if (res.status === 204) commit('removeGroup', _id)
+        if (res.status === 204) {
+          commit('removeGroup', _id)
+          commit('setActiveGroup', undefined)
+        }
       } catch (e) {
         console.log(e)
       }

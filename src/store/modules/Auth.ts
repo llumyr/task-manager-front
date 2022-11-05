@@ -32,7 +32,6 @@ export default {
             await router.push(Routes.tasks)
           }
         } catch (e) {
-          console.log(e)
           await router.push(Routes.home)
         }
       }
