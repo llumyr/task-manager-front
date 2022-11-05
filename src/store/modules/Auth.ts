@@ -19,12 +19,10 @@ export default {
     isAuth: (state: AuthState) => state.isAuth
   },
   mutations: {
-    setIsAuth (state: AuthState, payload: boolean) {
-      state.isAuth = payload
-    }
+    setIsAuth: (state: AuthState, payload: boolean) => (state.isAuth = payload)
   },
   actions: {
-    async initAuth (context: AuthContext) {
+    async initAuth (context: AuthContext): Promise<void> {
       if (localStorage.token) {
         try {
           const res = await tokenRefresh()
@@ -39,7 +37,7 @@ export default {
         }
       }
     },
-    async signUp (context: AuthContext, { username, password }: { username: string, password: string }) {
+    async signUp (context: AuthContext, { username, password }: { username: string, password: string }): Promise<void> {
       try {
         const res = await signUp(username, password)
         if (res.status === 201) {
@@ -50,7 +48,7 @@ export default {
         console.log(e)
       }
     },
-    async signIn (context: AuthContext, { username, password }: { username: string, password: string }) {
+    async signIn (context: AuthContext, { username, password }: { username: string, password: string }): Promise<void> {
       try {
         const res = await signIn(username, password)
         if (res.status === 200) {
@@ -62,7 +60,7 @@ export default {
         console.log(e)
       }
     },
-    async logout ({ commit }: AuthContext) {
+    async logout ({ commit }: AuthContext): Promise<void> {
       commit('setIsAuth', false)
       localStorage.removeItem('token')
       await router.push(Routes.home)

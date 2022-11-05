@@ -16,7 +16,7 @@ const store = useStore()
 
 onBeforeMount(async () => {
   document.documentElement.dataset.colorScheme = localStorage.colorScheme === 'dark' ? 'dark' : 'light'
-  await store.dispatch('initAuth')
+  await store.dispatch('auth/initAuth')
 })
 </script>
 
