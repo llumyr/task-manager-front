@@ -9,16 +9,12 @@ const getGroup = async (_id: string): Promise<AxiosResponse> => {
   return await api.get(`/group/${_id}`)
 }
 
-const updateGroup = async (title: string): Promise<AxiosResponse> => {
-  return await api.put('/group', { title })
+const updateGroup = async (_id: string, title: string): Promise<AxiosResponse> => {
+  return await api.put(`/group/${_id}`, { title })
 }
 
 const deleteGroup = async (_id: string): Promise<AxiosResponse> => {
   return await api.delete(`/group/${_id}`)
 }
 
-const moveGroup = async (_id: string, move: string): Promise<AxiosResponse> => {
-  return await api.put('/group/move', { _id, move })
-}
-
-export { updateGroup, deleteGroup, createGroup, moveGroup, getGroup }
+export { createGroup, getGroup, updateGroup, deleteGroup }
