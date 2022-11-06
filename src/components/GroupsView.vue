@@ -54,7 +54,7 @@ const toggleAddingForm = () => {
 
 const newGroupTitle = ref('')
 
-const confirmAddGroupDisabled = computed(() => newGroupTitle.value.length === 0)
+const confirmAddGroupDisabled = computed(() => !newGroupTitle.value.length)
 
 const addGroup = async () => {
   await store.dispatch('groups/createGroup', newGroupTitle.value)

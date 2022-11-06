@@ -1,5 +1,5 @@
 <template>
-  <div class="tasks">
+  <div class="tasks" v-if="activeGroup">
     <div class="task" v-for="task in activeGroup.tasks" :key="task._id">
       <div class="task__title">{{ task.title }}</div>
       <div class="subtasks">
@@ -9,6 +9,7 @@
       </div>
     </div>
   </div>
+  <div class="tasks" v-else><h3>There are no tasks here yet, create the first one!</h3></div>
 </template>
 
 <script setup lang="ts">
